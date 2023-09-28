@@ -1,3 +1,7 @@
+import type {ViewProps} from 'ViewPropTypes';
+import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
+
+
 import type {HostComponent} from 'react-native';
 import codegenNativeCommands from 'react-native/Libraries/Utilities/codegenNativeCommands';
 import {NativeProps} from './MapView';

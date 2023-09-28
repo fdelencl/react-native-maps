@@ -82,5 +82,12 @@
       "/node_modules/",
       "e2e"
     ]
-  }
+  },
+  "codegenConfig": {
+    "name": "AirMaps",
+    "type": "all",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "com.rnmaps.maps"
+    }
 }

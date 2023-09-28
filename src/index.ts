@@ -5,6 +5,9 @@ import MapView, {
   MapViewProps,
 } from './MapView';
 
+const isFabricEnabled = global.nativeFabricUIManager != null;
+console.log('isFabricEnabled', isFabricEnabled)
+
 import Marker from './MapMarker';
 export {MapMarker} from './MapMarker';
 export type {MapMarkerProps} from './MapMarker';
