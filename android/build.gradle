@@ -32,16 +32,6 @@ if (isNewArchitectureEnabled()) {
 
 android {
   compileSdkVersion safeExtGet('compileSdkVersion', 31)
-
-  sourceSets {
-    main {
-      if (isNewArchitectureEnabled()) {
-        java.srcDirs += ['src/newarch']
-      } else {
-        java.srcDirs += ['src/oldarch']
-      }
-    }
-  }
   
   defaultConfig {
     minSdkVersion safeExtGet('minSdkVersion', 21)

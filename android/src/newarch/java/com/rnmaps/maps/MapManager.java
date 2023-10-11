@@ -65,11 +65,13 @@ public class MapManager extends ViewGroupManager<MapView> {
     this.markerManager = markerManager;
   }
 
+  @NonNull
   @Override
   public String getName() {
     return REACT_CLASS;
   }
 
+  @NonNull
   @Override
   protected MapView createViewInstance(ThemedReactContext context) {
     return new MapView(context, this.appContext, this, googleMapOptions);

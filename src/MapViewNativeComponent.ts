@@ -10,14 +10,13 @@ import type {ViewProps} from 'ViewPropTypes';
 import type {HostComponent} from 'react-native';
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
 
-export interface AirMapsNativeProps extends ViewProps {
+// export interface AirMapNativeProps extends ViewProps {
+//   // add other props here
+// }
 
-  // add other props here
-}
-
-export const AirMap = codegenNativeComponent<AirMapsNativeProps>(
-  'AirMap',
-) as HostComponent<AirMapsNativeProps>;
+// export const AirMap = codegenNativeComponent<AirMapNativeProps>(
+//   'AirMap',
+// ) as HostComponent<AirMapNativeProps>;
 
 
 interface NativeCommands {
