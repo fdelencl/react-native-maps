@@ -18,7 +18,6 @@ export type MapViewNativeComponentType = HostComponent<NativeProps>;
 //   'AirMap',
 // ) as HostComponent<AirMapNativeProps>;
 
-
 interface NativeCommands {
   animateToRegion: (
     viewRef: NonNullable<

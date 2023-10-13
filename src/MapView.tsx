@@ -67,8 +67,7 @@ export const MAP_TYPES: MapTypes = {
   MUTEDSTANDARD: 'mutedStandard',
 };
 
-const isFabricEnabled = global.nativeFabricUIManager != null;
-
+// const isFabricEnabled = global.nativeFabricUIManager != null;
 
 const GOOGLE_MAPS_ONLY_TYPES: MapType[] = [MAP_TYPES.TERRAIN, MAP_TYPES.NONE];
 
