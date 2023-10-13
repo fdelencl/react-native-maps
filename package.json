@@ -84,7 +84,7 @@
     ]
   },
   "codegenConfig": {
-    "name": "AirMaps",
+    "name": "AIRMaps",
     "type": "all",
     "jsSrcsDir": "src",
     "android": {

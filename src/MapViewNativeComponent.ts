@@ -14,8 +14,8 @@ export interface AirMapNativeProps extends ViewProps {
   // add other props here
 }
 
-export const AirMap = codegenNativeComponent<AirMapNativeProps>(
-  'AirMap',
+export const AIRMap = codegenNativeComponent<AirMapNativeProps>(
+  'AIRMap',
 ) as HostComponent<AirMapNativeProps>;
 
 interface NativeCommands {
