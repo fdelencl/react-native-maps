@@ -6,9 +6,9 @@ import {LatLng, Region} from './sharedTypes';
 
 export type MapViewNativeComponentType = HostComponent<NativeProps>;
 
-import type {ViewProps} from 'ViewPropTypes';
-import type {HostComponent} from 'react-native';
-import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
+// import type {ViewProps} from 'ViewPropTypes';
+// import type {HostComponent} from 'react-native';
+// import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
 
 // export interface AirMapNativeProps extends ViewProps {
 //   // add other props here
