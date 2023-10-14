@@ -29,8 +29,8 @@ import java.util.Map;
 @ReactModule(name = MapManager.NAME)
 public class MapManager extends ViewGroupManager<MapView> {
 
-  private static final String REACT_CLASS = "AIRMapView";
-  static final String NAME = "AIRMapView";
+  private static final String REACT_CLASS = "AIRMap";
+  static final String NAME = "AIRMap";
 
 
   private final Map<String, Integer> MAP_TYPES = MapBuilder.of(
