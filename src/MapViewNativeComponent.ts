@@ -6,18 +6,6 @@ import {LatLng, Region} from './sharedTypes';
 
 export type MapViewNativeComponentType = HostComponent<NativeProps>;
 
-import type {ViewProps} from 'ViewPropTypes';
-import type {HostComponent} from 'react-native';
-import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
-
-export interface AirMapNativeProps extends ViewProps {
-  // add other props here
-}
-
-export const AIRMap = codegenNativeComponent<AirMapNativeProps>(
-  'AIRMap',
-) as HostComponent<AirMapNativeProps>;
-
 interface NativeCommands {
   animateToRegion: (
     viewRef: NonNullable<

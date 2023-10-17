@@ -20,6 +20,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.location.Location;
 
+import android.util.Log;
+
 import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReadableArray;
@@ -224,6 +226,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
 
   @Override
   public void onMapReady(@NonNull final GoogleMap map) {
+    Log.d("SHIT", "onMapReady java");
     if (destroyed) {
       return;
     }
@@ -247,8 +250,8 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
 
     applyBridgedProps();
 
-    manager.pushEvent(context, this, "onMapReady", new WritableNativeMap());
-
+    manager.pushEvent(context, this, "topOnMapReady", new WritableNativeMap());
+    Log.d("SHIT", "onMapReady event pushed");
     final MapView view = this;
 
     map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
@@ -481,6 +484,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
   }
 
   public void setInitialRegion(ReadableMap initialRegion) {
+    Log.d("SHIT","setInitialRegion");
     this.initialRegion = initialRegion;
     // Theoretically onMapReady might be called before setInitialRegion
     // In that case, trigger moveToRegion manually
@@ -674,12 +678,14 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
   }
 
   public void addFeature(View child, int index) {
+    Log.d("SHIT","SHIT");
     // Our desired API is to pass up annotations/overlays as children to the mapview component.
     // This is where we intercept them and do the appropriate underlying mapview action.
     if (child instanceof MapMarker) {
       MapMarker annotation = (MapMarker) child;
       annotation.addToMap(markerCollection);
       features.add(index, annotation);
+      Log.d("SHIT","SHIT");
 
       // Allow visibility event to be triggered later
       int visibility = annotation.getVisibility();

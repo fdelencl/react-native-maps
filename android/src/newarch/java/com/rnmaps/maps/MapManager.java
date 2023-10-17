@@ -24,6 +24,8 @@ import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
+import android.util.Log;
+
 import java.util.Map;
 
 @ReactModule(name = MapManager.NAME)
@@ -368,30 +370,30 @@ public class MapManager extends ViewGroupManager<MapView> {
   @Nullable
   public Map getExportedCustomDirectEventTypeConstants() {
     Map<String, Map<String, String>> map = MapBuilder.of(
-        "onMapReady", MapBuilder.of("registrationName", "onMapReady"),
-        "onPress", MapBuilder.of("registrationName", "onPress"),
-        "onLongPress", MapBuilder.of("registrationName", "onLongPress"),
-        "onMarkerPress", MapBuilder.of("registrationName", "onMarkerPress"),
-        "onMarkerSelect", MapBuilder.of("registrationName", "onMarkerSelect"),
-        "onMarkerDeselect", MapBuilder.of("registrationName", "onMarkerDeselect"),
-        "onCalloutPress", MapBuilder.of("registrationName", "onCalloutPress")
+        "topOnMapReady", MapBuilder.of("registrationName", "onMapReady"),
+        "topOnPress", MapBuilder.of("registrationName", "onPress"),
+        "topOnLongPress", MapBuilder.of("registrationName", "onLongPress"),
+        "topOnMarkerPress", MapBuilder.of("registrationName", "onMarkerPress"),
+        "topOnMarkerSelect", MapBuilder.of("registrationName", "onMarkerSelect"),
+        "topOnMarkerDeselect", MapBuilder.of("registrationName", "onMarkerDeselect"),
+        "topOnCalloutPress", MapBuilder.of("registrationName", "onCalloutPress")
     );
 
     map.putAll(MapBuilder.of(
-        "onUserLocationChange", MapBuilder.of("registrationName", "onUserLocationChange"),
-        "onMarkerDragStart", MapBuilder.of("registrationName", "onMarkerDragStart"),
-        "onMarkerDrag", MapBuilder.of("registrationName", "onMarkerDrag"),
-        "onMarkerDragEnd", MapBuilder.of("registrationName", "onMarkerDragEnd"),
-        "onPanDrag", MapBuilder.of("registrationName", "onPanDrag"),
-        "onKmlReady", MapBuilder.of("registrationName", "onKmlReady"),
-        "onPoiClick", MapBuilder.of("registrationName", "onPoiClick")
+        "topOnUserLocationChange", MapBuilder.of("registrationName", "onUserLocationChange"),
+        "topOnMarkerDragStart", MapBuilder.of("registrationName", "onMarkerDragStart"),
+        "topOnMarkerDrag", MapBuilder.of("registrationName", "onMarkerDrag"),
+        "topOnMarkerDragEnd", MapBuilder.of("registrationName", "onMarkerDragEnd"),
+        "topOnPanDrag", MapBuilder.of("registrationName", "onPanDrag"),
+        "topOnKmlReady", MapBuilder.of("registrationName", "onKmlReady"),
+        "topOnPoiClick", MapBuilder.of("registrationName", "onPoiClick")
     ));
 
     map.putAll(MapBuilder.of(
-        "onIndoorLevelActivated", MapBuilder.of("registrationName", "onIndoorLevelActivated"),
-        "onIndoorBuildingFocused", MapBuilder.of("registrationName", "onIndoorBuildingFocused"),
-        "onDoublePress", MapBuilder.of("registrationName", "onDoublePress"),
-        "onMapLoaded", MapBuilder.of("registrationName", "onMapLoaded")
+        "topOnIndoorLevelActivated", MapBuilder.of("registrationName", "onIndoorLevelActivated"),
+        "topOnIndoorBuildingFocused", MapBuilder.of("registrationName", "onIndoorBuildingFocused"),
+        "topOnDoublePress", MapBuilder.of("registrationName", "onDoublePress"),
+        "topOnMapLoaded", MapBuilder.of("registrationName", "onMapLoaded")
     ));
 
     return map;
@@ -406,6 +408,7 @@ public class MapManager extends ViewGroupManager<MapView> {
 
   @Override
   public void addView(MapView parent, View child, int index) {
+    Log.d("SHIT", "MapView addView");
     parent.addFeature(child, index);
   }
 
@@ -430,6 +433,7 @@ public class MapManager extends ViewGroupManager<MapView> {
   }
 
   void pushEvent(ThemedReactContext context, View view, String name, WritableMap data) {
+    Log.d("SHIT", "pushEvent " + name);
     context.getJSModule(RCTEventEmitter.class)
         .receiveEvent(view.getId(), name, data);
   }
