@@ -24,8 +24,12 @@ import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
+import com.facebook.react.uimanager.UIManagerHelper;
+import com.facebook.react.uimanager.events.EventDispatcher;
+
 import android.util.Log;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @ReactModule(name = MapManager.NAME)
@@ -123,7 +127,7 @@ public class MapManager extends ViewGroupManager<MapView> {
   @ReactProp(name = "mapPadding")
   public void setMapPadding(MapView view, @Nullable ReadableMap padding) {
     int left = 0;
-    int top = 0;
+    int topOn = 0;
     int right = 0;
     int bottom = 0;
     double density = (double) view.getResources().getDisplayMetrics().density;
@@ -133,8 +137,8 @@ public class MapManager extends ViewGroupManager<MapView> {
         left = (int) (padding.getDouble("left") * density);
       }
 
-      if (padding.hasKey("top")) {
-        top = (int) (padding.getDouble("top") * density);
+      if (padding.hasKey("topOn")) {
+        topOn = (int) (padding.getDouble("topOn") * density);
       }
 
       if (padding.hasKey("right")) {
@@ -146,8 +150,8 @@ public class MapManager extends ViewGroupManager<MapView> {
       }
     }
 
-    view.applyBaseMapPadding(left, top, right, bottom);
-    view.map.setPadding(left, top, right, bottom);
+    view.applyBaseMapPadding(left, topOn, right, bottom);
+    view.map.setPadding(left, topOn, right, bottom);
   }
 
   @ReactProp(name = "showsUserLocation", defaultBoolean = false)
@@ -369,35 +373,101 @@ public class MapManager extends ViewGroupManager<MapView> {
   @Override
   @Nullable
   public Map getExportedCustomDirectEventTypeConstants() {
-    Map<String, Map<String, String>> map = MapBuilder.of(
-        "topOnMapReady", MapBuilder.of("registrationName", "onMapReady"),
-        "topOnPress", MapBuilder.of("registrationName", "onPress"),
-        "topOnLongPress", MapBuilder.of("registrationName", "onLongPress"),
-        "topOnMarkerPress", MapBuilder.of("registrationName", "onMarkerPress"),
-        "topOnMarkerSelect", MapBuilder.of("registrationName", "onMarkerSelect"),
-        "topOnMarkerDeselect", MapBuilder.of("registrationName", "onMarkerDeselect"),
-        "topOnCalloutPress", MapBuilder.of("registrationName", "onCalloutPress")
-    );
-
-    map.putAll(MapBuilder.of(
-        "topOnUserLocationChange", MapBuilder.of("registrationName", "onUserLocationChange"),
-        "topOnMarkerDragStart", MapBuilder.of("registrationName", "onMarkerDragStart"),
-        "topOnMarkerDrag", MapBuilder.of("registrationName", "onMarkerDrag"),
-        "topOnMarkerDragEnd", MapBuilder.of("registrationName", "onMarkerDragEnd"),
-        "topOnPanDrag", MapBuilder.of("registrationName", "onPanDrag"),
-        "topOnKmlReady", MapBuilder.of("registrationName", "onKmlReady"),
-        "topOnPoiClick", MapBuilder.of("registrationName", "onPoiClick")
-    ));
-
-    map.putAll(MapBuilder.of(
-        "topOnIndoorLevelActivated", MapBuilder.of("registrationName", "onIndoorLevelActivated"),
-        "topOnIndoorBuildingFocused", MapBuilder.of("registrationName", "onIndoorBuildingFocused"),
-        "topOnDoublePress", MapBuilder.of("registrationName", "onDoublePress"),
-        "topOnMapLoaded", MapBuilder.of("registrationName", "onMapLoaded")
-    ));
-
-    return map;
+    Map<String, Object> baseEventTypeConstants =
+        super.getExportedCustomBubblingEventTypeConstants();
+    Map<String, Object> eventTypeConstants = new HashMap<String, Object>();
+    eventTypeConstants.putAll(
+         MapBuilder.<String, Object>builder()
+            .put(
+                "topOnMapReady",
+                MapBuilder.of("registrationName", "onMapReady"))
+            .put(
+                "topOnPress",
+                MapBuilder.of("registrationName", "onPress"))
+            .put(
+                "topOnLongPress",
+                MapBuilder.of("registrationName", "onLongPress"))
+            .put(
+                "topOnMarkerPress",
+                MapBuilder.of("registrationName", "onMarkerPress"))
+            .put(
+                "topOnMarkerSelect",
+                MapBuilder.of("registrationName", "onMarkerSelect"))
+            .put(
+                "topOnMarkerDeselect",
+                MapBuilder.of("registrationName", "onMarkerDeselect"))
+            .put(
+                "topOnCalloutPress",
+                MapBuilder.of("registrationName", "onCalloutPress"))
+            .put(
+                "topOnUserLocationChange",
+                MapBuilder.of("registrationName", "onUserLocationChange"))
+            .put(
+                "topOnMarkerDragStart",
+                MapBuilder.of("registrationName", "onMarkerDragStart"))
+            .put(
+                "topOnMarkerDrag",
+                MapBuilder.of("registrationName", "onMarkerDrag"))
+            .put(
+                "topOnMarkerDragEnd",
+                MapBuilder.of("registrationName", "onMarkerDragEnd"))
+            .put(
+                "topOnPanDrag",
+                MapBuilder.of("registrationName", "onPanDrag"))
+            .put(
+                "topOnKmlReady",
+                MapBuilder.of("registrationName", "onKmlReady"))
+            .put(
+                "topOnPoiClick",
+                MapBuilder.of("registrationName", "onPoiClick"))
+            .put(
+                "topOnIndoorLevelActivated",
+                MapBuilder.of("registrationName", "onIndoorLevelActivated"))
+            .put(
+                "topOnIndoorBuildingFocused",
+                MapBuilder.of("registrationName", "onIndoorBuildingFocused"))
+            .put(
+                "topOnDoublePress",
+                MapBuilder.of("registrationName", "onDoublePress"))
+            .put(
+                "topOnMapLoaded",
+                MapBuilder.of("registrationName", "onMapLoaded"))
+            .build());
+    return eventTypeConstants;
   }
+
+
+
+
+
+  //       "topOnMapReady", MapBuilder.of("registrationName", "onMapReady"),
+  //       "topOnPress", MapBuilder.of("registrationName", "onPress"),
+  //       "topOnLongPress", MapBuilder.of("registrationName", "onLongPress"),
+  //       "topOnMarkerPress", MapBuilder.of("registrationName", "onMarkerPress"),
+  //       "topOnMarkerSelect", MapBuilder.of("registrationName", "onMarkerSelect"),
+  //       "topOnMarkerDeselect", MapBuilder.of("registrationName", "onMarkerDeselect"),
+  //       "topOnCalloutPress", MapBuilder.of("registrationName", "onCalloutPress")
+  //   );
+
+  //   map.putAll(MapBuilder.of(
+  //       "topOnUserLocationChange", MapBuilder.of("registrationName", "onUserLocationChange"),
+  //       "topOnMarkerDragStart", MapBuilder.of("registrationName", "onMarkerDragStart"),
+  //       "topOnMarkerDrag", MapBuilder.of("registrationName", "onMarkerDrag"),
+  //       "topOnMarkerDragEnd", MapBuilder.of("registrationName", "onMarkerDragEnd"),
+  //       "topOnPanDrag", MapBuilder.of("registrationName", "onPanDrag"),
+  //       "topOnKmlReady", MapBuilder.of("registrationName", "onKmlReady"),
+  //       "topOnPoiClick", MapBuilder.of("registrationName", "onPoiClick")
+  //   ));
+
+  //   map.putAll(MapBuilder.of(
+  //       "topOnIndoorLevelActivated", MapBuilder.of("registrationName", "onIndoorLevelActivated"),
+  //       "topOnIndoorBuildingFocused", MapBuilder.of("registrationName", "onIndoorBuildingFocused"),
+  //       "topOnDoublePress", MapBuilder.of("registrationName", "onDoublePress"),
+  //       "topOnMapLoaded", MapBuilder.of("registrationName", "onMapLoaded")
+  //   ));
+
+  //   return map;
+  // }
 
   @Override
   public LayoutShadowNode createShadowNodeInstance() {
@@ -434,8 +504,20 @@ public class MapManager extends ViewGroupManager<MapView> {
 
   void pushEvent(ThemedReactContext context, View view, String name, WritableMap data) {
     Log.d("SHIT", "pushEvent " + name);
-    context.getJSModule(RCTEventEmitter.class)
-        .receiveEvent(view.getId(), name, data);
+    Log.d("SHIT", "context" + context.getModuleName());
+    // Log.d("SHIT", "context.getJSModuleName(RCTEventEmitter.class " + context.getJSModule(RCTModernEventEmitter.class));
+    // Log.d("SHIT", "context.getJSModuleName(RCTEventEmitter.class " + context.getJSModule(ReactEventEmitter.class));
+    // context.getJSModule(RCTEventEmitter.class)
+    //     .receiveEvent(view.getId(), name, data);
+
+    int viewId = view.getId();
+
+    EventDispatcher eventDispatcher = UIManagerHelper.getEventDispatcherForReactTag(context, viewId);
+    Log.d("SHIT", "eventDispatcher " + eventDispatcher);
+    if (eventDispatcher != null) {
+      eventDispatcher.dispatchEvent(
+          new MapReadyEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
+    }
   }
 
   @Override

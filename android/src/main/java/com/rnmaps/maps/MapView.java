@@ -250,7 +250,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
 
     applyBridgedProps();
 
-    manager.pushEvent(context, this, "topOnMapReady", new WritableNativeMap());
+    manager.pushEvent(context, this, "topMapReady", new WritableNativeMap());
     Log.d("SHIT", "onMapReady event pushed");
     final MapView view = this;
 
@@ -406,7 +406,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
     map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
       @Override public void onMapLoaded() {
         isMapLoaded = true;
-        manager.pushEvent(context, view, "onMapLoaded", new WritableNativeMap());
+        manager.pushEvent(context, view, "topMapLoaded", new WritableNativeMap());
         MapView.this.cacheView();
       }
     });
