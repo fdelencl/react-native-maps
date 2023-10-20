@@ -251,7 +251,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
     applyBridgedProps();
 
     manager.pushEvent(context, this, "topMapReady", new WritableNativeMap());
-    Log.d("SHIT", "onMapReady event pushed");
+
     final MapView view = this;
 
     map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
@@ -271,7 +271,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
 
         event.putMap("coordinate", coordinate);
 
-        manager.pushEvent(context, view, "onUserLocationChange", event);
+        manager.pushEvent(context, view, "topUserLocationChange", event);
       }
     });
 
@@ -283,12 +283,12 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
         WritableMap event = makeClickEventData(marker.getPosition());
         event.putString("action", "marker-press");
         event.putString("id", airMapMarker.getIdentifier());
-        manager.pushEvent(context, view, "onMarkerPress", event);
+        manager.pushEvent(context, view, "topMarkerPress", event);
 
         event = makeClickEventData(marker.getPosition());
         event.putString("action", "marker-press");
         event.putString("id", airMapMarker.getIdentifier());
-        manager.pushEvent(context, airMapMarker, "onPress", event);
+        manager.pushEvent(context, airMapMarker, "topPress", event);
 
         // Return false to open the callout info window and center on the marker
         // https://developers.google.com/android/reference/com/google/android/gms/maps/GoogleMap
@@ -307,7 +307,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
       public void onPolygonClick(@NonNull Polygon polygon) {
         WritableMap event = makeClickEventData(tapLocation);
         event.putString("action", "polygon-press");
-        manager.pushEvent(context, polygonMap.get(polygon), "onPress", event);
+        manager.pushEvent(context, polygonMap.get(polygon), "topPress", event);
       }
     });
 
@@ -316,7 +316,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
       public void onPolylineClick(@NonNull Polyline polyline) {
         WritableMap event = makeClickEventData(tapLocation);
         event.putString("action", "polyline-press");
-        manager.pushEvent(context, polylineMap.get(polyline), "onPress", event);
+        manager.pushEvent(context, polylineMap.get(polyline), "topPress", event);
       }
     });
 
@@ -325,17 +325,17 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
       public void onInfoWindowClick(@NonNull Marker marker) {
         WritableMap event = makeClickEventData(marker.getPosition());
         event.putString("action", "callout-press");
-        manager.pushEvent(context, view, "onCalloutPress", event);
+        manager.pushEvent(context, view, "topCalloutPress", event);
 
         event = makeClickEventData(marker.getPosition());
         event.putString("action", "callout-press");
         MapMarker markerView = getMarkerMap(marker);
-        manager.pushEvent(context, markerView, "onCalloutPress", event);
+        manager.pushEvent(context, markerView, "topCalloutPress", event);
 
         event = makeClickEventData(marker.getPosition());
         event.putString("action", "callout-press");
         MapCallout infoWindow = markerView.getCalloutView();
-        if (infoWindow != null) manager.pushEvent(context, infoWindow, "onPress", event);
+        if (infoWindow != null) manager.pushEvent(context, infoWindow, "topPress", event);
       }
     });
 
@@ -344,7 +344,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
       public void onMapClick(@NonNull LatLng point) {
         WritableMap event = makeClickEventData(point);
         event.putString("action", "press");
-        manager.pushEvent(context, view, "onPress", event);
+        manager.pushEvent(context, view, "topPress", event);
       }
     });
 
@@ -353,7 +353,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
       public void onMapLongClick(@NonNull LatLng point) {
         WritableMap event = makeClickEventData(point);
         event.putString("action", "long-press");
-        manager.pushEvent(context, view, "onLongPress", makeClickEventData(point));
+        manager.pushEvent(context, view, "topLongPress", makeClickEventData(point));
       }
     });
 
@@ -362,7 +362,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
       public void onGroundOverlayClick(@NonNull GroundOverlay groundOverlay) {
         WritableMap event = makeClickEventData(groundOverlay.getPosition());
         event.putString("action", "overlay-press");
-        manager.pushEvent(context, overlayMap.get(groundOverlay), "onPress", event);
+        manager.pushEvent(context, overlayMap.get(groundOverlay), "topPress", event);
       }
     });
 
@@ -1079,31 +1079,31 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
   @Override
   public void onMarkerDragStart(Marker marker) {
     WritableMap event = makeClickEventData(marker.getPosition());
-    manager.pushEvent(context, this, "onMarkerDragStart", event);
+    manager.pushEvent(context, this, "topMarkerDragStart", event);
 
     MapMarker markerView = getMarkerMap(marker);
     event = makeClickEventData(marker.getPosition());
-    manager.pushEvent(context, markerView, "onDragStart", event);
+    manager.pushEvent(context, markerView, "topDragStart", event);
   }
 
   @Override
   public void onMarkerDrag(Marker marker) {
     WritableMap event = makeClickEventData(marker.getPosition());
-    manager.pushEvent(context, this, "onMarkerDrag", event);
+    manager.pushEvent(context, this, "topMarkerDrag", event);
 
     MapMarker markerView = getMarkerMap(marker);
     event = makeClickEventData(marker.getPosition());
-    manager.pushEvent(context, markerView, "onDrag", event);
+    manager.pushEvent(context, markerView, "topDrag", event);
   }
 
   @Override
   public void onMarkerDragEnd(Marker marker) {
     WritableMap event = makeClickEventData(marker.getPosition());
-    manager.pushEvent(context, this, "onMarkerDragEnd", event);
+    manager.pushEvent(context, this, "topMarkerDragEnd", event);
 
     MapMarker markerView = getMarkerMap(marker);
     event = makeClickEventData(marker.getPosition());
-    manager.pushEvent(context, markerView, "onDragEnd", event);
+    manager.pushEvent(context, markerView, "topDragEnd", event);
   }
 
   @Override
@@ -1113,7 +1113,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
     event.putString("placeId", poi.placeId);
     event.putString("name", poi.name);
 
-    manager.pushEvent(context, this, "onPoiClick", event);
+    manager.pushEvent(context, this, "topPoiClick", event);
   }
 
   private ProgressBar getMapLoadingProgressBar() {
@@ -1206,7 +1206,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
     Point point = new Point((int) ev.getX(), (int) ev.getY());
     LatLng coords = this.map.getProjection().fromScreenLocation(point);
     WritableMap event = makeClickEventData(coords);
-    manager.pushEvent(context, this, "onPanDrag", event);
+    manager.pushEvent(context, this, "topPanDrag", event);
   }
 
   public void onDoublePress(MotionEvent ev) {
@@ -1214,7 +1214,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
     Point point = new Point((int) ev.getX(), (int) ev.getY());
     LatLng coords = this.map.getProjection().fromScreenLocation(point);
     WritableMap event = makeClickEventData(coords);
-    manager.pushEvent(context, this, "onDoublePress", event);
+    manager.pushEvent(context, this, "topDoublePress", event);
   }
 
   public void setKmlSrc(String kmlSrc) {
@@ -1232,14 +1232,14 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
       WritableArray markers = new WritableNativeArray();
 
       if (kmlLayer.getContainers() == null) {
-        manager.pushEvent(context, this, "onKmlReady", pointers);
+        manager.pushEvent(context, this, "topKmlReady", pointers);
         return;
       }
 
       //Retrieve a nested container within the first container
       KmlContainer container = kmlLayer.getContainers().iterator().next();
       if (container == null || container.getContainers() == null) {
-        manager.pushEvent(context, this, "onKmlReady", pointers);
+        manager.pushEvent(context, this, "topKmlReady", pointers);
         return;
       }
 
@@ -1300,7 +1300,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
 
       pointers.putArray("markers", markers);
 
-      manager.pushEvent(context, this, "onKmlReady", pointers);
+      manager.pushEvent(context, this, "topKmlReady", pointers);
 
     } catch (XmlPullParserException | IOException | InterruptedException | ExecutionException e) {
       e.printStackTrace();
@@ -1330,7 +1330,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
 
       event.putMap("IndoorBuilding", indoorBuilding);
 
-      manager.pushEvent(context, this, "onIndoorBuildingFocused", event);
+      manager.pushEvent(context, this, "topIndoorBuildingFocused", event);
     } else {
       WritableMap event = Arguments.createMap();
       WritableArray levelsArray = Arguments.createArray();
@@ -1341,7 +1341,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
 
       event.putMap("IndoorBuilding", indoorBuilding);
 
-      manager.pushEvent(context, this, "onIndoorBuildingFocused", event);
+      manager.pushEvent(context, this, "topIndoorBuildingFocused", event);
     }
   }
 
@@ -1365,7 +1365,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
 
     event.putMap("IndoorLevel", indoorlevel);
 
-    manager.pushEvent(context, this, "onIndoorLevelActivated", event);
+    manager.pushEvent(context, this, "topIndoorLevelActivated", event);
   }
 
   public void setIndoorActiveLevelIndex(int activeLevelIndex) {
