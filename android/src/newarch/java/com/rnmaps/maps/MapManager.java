@@ -515,61 +515,62 @@ public class MapManager extends ViewGroupManager<MapView> {
     EventDispatcher eventDispatcher = UIManagerHelper.getEventDispatcherForReactTag(context, viewId);
     Log.d("SHIT", "eventDispatcher " + eventDispatcher);
     if (eventDispatcher != null) {
-    switch (name):
-      case "topMapReady"
+    switch (name) {
+      case "topMapReady":
         eventDispatcher.dispatchEvent(new MapReadyEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topPress"
+      case "topPress":
         eventDispatcher.dispatchEvent(new PressEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topLongPress"
+      case "topLongPress":
         eventDispatcher.dispatchEvent(new LongPressEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topMarkerPress"
+      case "topMarkerPress":
         eventDispatcher.dispatchEvent(new MarkerPressEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topMarkerSelect"
+      case "topMarkerSelect":
         eventDispatcher.dispatchEvent(new MarkerSelectEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topMarkerDeselect"
+      case "topMarkerDeselect":
         eventDispatcher.dispatchEvent(new MarkerDeselectEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topCalloutPress"
+      case "topCalloutPress":
         eventDispatcher.dispatchEvent(new CalloutPressEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topUserLocationChange"
+      case "topUserLocationChange":
         eventDispatcher.dispatchEvent(new UserLocationChangeEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topMarkerDragStart"
+      case "topMarkerDragStart":
         eventDispatcher.dispatchEvent(new MarkerDragStartEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topMarkerDrag"
+      case "topMarkerDrag":
         eventDispatcher.dispatchEvent(new MarkerDragEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topMarkerDragEnd"
+      case "topMarkerDragEnd":
         eventDispatcher.dispatchEvent(new MarkerDragEndEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topPanDrag"
+      case "topPanDrag":
         eventDispatcher.dispatchEvent(new PanDragEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topKmlReady"
+      case "topKmlReady":
         eventDispatcher.dispatchEvent(new KmlReadyEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topPoiClick"
+      case "topPoiClick":
         eventDispatcher.dispatchEvent(new PoiClickEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topIndoorLevelActivated"
+      case "topIndoorLevelActivated":
         eventDispatcher.dispatchEvent(new IndoorLevelActivatedEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topIndoorBuildingFocused"
+      case "topIndoorBuildingFocused":
         eventDispatcher.dispatchEvent(new IndoorBuildingFocusedEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topDoublePress"
+      case "topDoublePress":
         eventDispatcher.dispatchEvent(new DoublePressEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
-      case "topMapLoaded"
+      case "topMapLoaded":
         eventDispatcher.dispatchEvent(new MapLoadedEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
+      }
     }
   }
 
