@@ -8,18 +8,18 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.common.ViewUtil;
 import com.facebook.react.uimanager.events.Event;
 
-public class PoiClickEvent extends Event {
+public class PanDragEvent extends Event {
 
-    public static final String EVENT_NAME = "onPoiClick";
+    public static final String EVENT_NAME = "onPanDrag";
 
     private final String mMessage;
 
     @Deprecated
-    public PoiClickEvent(int viewId, String message) {
+    public PanDragEvent(int viewId, String message) {
       this(-1, viewId, message);
     }
   
-    public PoiClickEvent(int surfaceId, int viewId, String message) {
+    public PanDragEvent(int surfaceId, int viewId, String message) {
       super(surfaceId, viewId);
       mMessage = message;
     }
