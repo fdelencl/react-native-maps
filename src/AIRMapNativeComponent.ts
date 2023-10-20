@@ -15,7 +15,24 @@ type LogEvent = {
 
 export interface NativeProps extends ViewProps {
   // add other props here
-    onMapReady?: BubblingEventHandler<LogEvent>;
+    onMapReady?:  BubblingEventHandler<LogEvent>;
+    onPress?:  BubblingEventHandler<LogEvent>;
+    onLongPress?:  BubblingEventHandler<LogEvent>;
+    onMarkerPress?:  BubblingEventHandler<LogEvent>;
+    onMarkerSelect?:  BubblingEventHandler<LogEvent>;
+    onMarkerDeselect?:  BubblingEventHandler<LogEvent>;
+    onCalloutPress?:  BubblingEventHandler<LogEvent>;
+    onUserLocationChange?:  BubblingEventHandler<LogEvent>;
+    onMarkerDragStart?:  BubblingEventHandler<LogEvent>;
+    onMarkerDrag?:  BubblingEventHandler<LogEvent>;
+    onMarkerDragEnd?:  BubblingEventHandler<LogEvent>;
+    onPanDrag?:  BubblingEventHandler<LogEvent>;
+    onKmlReady?:  BubblingEventHandler<LogEvent>;
+    onPoiClick?:  BubblingEventHandler<LogEvent>;
+    onIndoorLevelActivated?:  BubblingEventHandler<LogEvent>;
+    onIndoorBuildingFocused?:  BubblingEventHandler<LogEvent>;
+    onDoublePress?:  BubblingEventHandler<LogEvent>;
+    onMapLoaded?:  BubblingEventHandler<LogEvent>;
 
 }
 
