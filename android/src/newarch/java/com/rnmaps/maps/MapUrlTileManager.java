@@ -5,10 +5,11 @@ import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.ViewGroupManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
-
+import android.util.Log;
 
 @ReactModule(name = MapUrlTileManager.NAME)
 public class MapUrlTileManager extends ViewGroupManager<MapUrlTile> {
@@ -17,6 +18,7 @@ public class MapUrlTileManager extends ViewGroupManager<MapUrlTile> {
 
   public MapUrlTileManager(ReactApplicationContext reactContext) {
     super();
+    Log.d("SHIT", "MapUrlTileManager creating");
     DisplayMetrics metrics = new DisplayMetrics();
     ((WindowManager) reactContext.getSystemService(Context.WINDOW_SERVICE))
         .getDefaultDisplay()
