@@ -23,7 +23,7 @@ import java.util.Map;
 import com.facebook.react.module.annotations.ReactModule;
 import android.util.Log;
 
-@ReactModule(name = MapManager.NAME)
+@ReactModule(name = MapPolylineManager.NAME)
 public class MapPolylineManager extends ViewGroupManager<MapPolyline> {
   private final DisplayMetrics metrics;
     static final String NAME = "AIRMapPolyline";
