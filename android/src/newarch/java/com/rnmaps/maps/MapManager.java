@@ -538,7 +538,8 @@ public class MapManager extends ViewGroupManager<MapView> {
         eventDispatcher.dispatchEvent(new CalloutPressEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
         break;
       case "topUserLocationChange":
-        eventDispatcher.dispatchEvent(new UserLocationChangeEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
+        Log.d("SHIT", "topUserLocationChange " + data);
+        eventDispatcher.dispatchEvent(new UserLocationChangeEvent(UIManagerHelper.getSurfaceId(context), viewId, data));
         break;
       case "topMarkerDragStart":
         eventDispatcher.dispatchEvent(new MarkerDragStartEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));

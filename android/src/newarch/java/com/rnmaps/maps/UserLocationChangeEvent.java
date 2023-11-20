@@ -12,20 +12,16 @@ public class UserLocationChangeEvent extends Event {
 
     public static final String EVENT_NAME = "onUserLocationChange";
 
-    private final String mMessage;
+    private final WritableMap mData;
 
     @Deprecated
-    public UserLocationChangeEvent(int viewId, String message) {
-      this(-1, viewId, message);
+    public UserLocationChangeEvent(int viewId, WritableMap data) {
+      this(-1, viewId, data);
     }
   
-    public UserLocationChangeEvent(int surfaceId, int viewId, String message) {
+    public UserLocationChangeEvent(int surfaceId, int viewId, WritableMap data) {
       super(surfaceId, viewId);
-      mMessage = message;
-    }
-  
-    public String getMessage() {
-        return mMessage;
+      mData = data;
     }
 
     @Override
@@ -36,9 +32,6 @@ public class UserLocationChangeEvent extends Event {
     @Nullable
     @Override
     protected WritableMap getEventData() {
-      WritableMap eventData = Arguments.createMap();
-      eventData.putInt("target", getViewTag());
-      eventData.putString("message", getMessage());
-      return eventData;
+      return mData;
     }
 }
