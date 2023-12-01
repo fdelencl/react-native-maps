@@ -382,7 +382,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
         boolean isGesture = GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE == cameraMoveReason;
 
         WritableMap event = new WritableNativeMap();
-        event.putBoolean("continuous", continuous);
+        event.putBoolean("continuous", true);
 
         WritableMap region = new WritableNativeMap();
         LatLng center = bounds.getCenter();
@@ -412,7 +412,7 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
           boolean isGesture = GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE == cameraMoveReason;
 
           WritableMap event = new WritableNativeMap();
-          event.putBoolean("continuous", continuous);
+          event.putBoolean("continuous", false);
 
           WritableMap region = new WritableNativeMap();
           LatLng center = bounds.getCenter();
