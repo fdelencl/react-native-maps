@@ -1039,8 +1039,6 @@ class MapView extends React.Component<MapViewProps, State> {
 
   render() {
     let props: NativeProps;
-    console.log('rendering')
-    console.log('isReady = ', this.state.isReady);
     if (this.state.isReady) {
       props = {
         region: null,
