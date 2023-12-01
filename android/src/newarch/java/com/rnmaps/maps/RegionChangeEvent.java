@@ -15,11 +15,11 @@ public class RegionChangeEvent extends Event {
     private final WritableMap mData;
 
     @Deprecated
-    public UserLocationChangeEvent(int viewId, WritableMap data) {
+    public RegionChangeEvent(int viewId, WritableMap data) {
       this(-1, viewId, data);
     }
   
-    public UserLocationChangeEvent(int surfaceId, int viewId, WritableMap data) {
+    public RegionChangeEvent(int surfaceId, int viewId, WritableMap data) {
       super(surfaceId, viewId);
       mData = data;
     }
