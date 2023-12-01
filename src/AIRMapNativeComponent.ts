@@ -33,7 +33,7 @@ export interface NativeProps extends ViewProps {
     onIndoorBuildingFocused?:  BubblingEventHandler<LogEvent>;
     onDoublePress?:  BubblingEventHandler<LogEvent>;
     onMapLoaded?:  BubblingEventHandler<LogEvent>;
-
+    onRegionChange?:  BubblingEventHandler<LogEvent>;
 }
 
 export default codegenNativeComponent<NativeProps>(

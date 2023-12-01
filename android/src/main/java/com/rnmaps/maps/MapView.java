@@ -381,8 +381,22 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
         cameraLastIdleBounds = null;
         boolean isGesture = GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE == cameraMoveReason;
 
-        RegionChangeEvent event = new RegionChangeEvent(getId(), bounds, true, isGesture);
-        eventDispatcher.dispatchEvent(event);
+        WritableMap event = new WritableNativeMap();
+        event.putBoolean("continuous", continuous);
+
+        WritableMap region = new WritableNativeMap();
+        LatLng center = bounds.getCenter();
+        region.putDouble("latitude", center.latitude);
+        region.putDouble("longitude", center.longitude);
+        region.putDouble("latitudeDelta", bounds.northeast.latitude - bounds.southwest.latitude);
+        region.putDouble("longitudeDelta", bounds.northeast.longitude - bounds.southwest.longitude);
+        event.putMap("region", region);
+        event.putBoolean("isGesture", isGesture);
+
+        manager.pushEvent(context, view, "topRegionChange", event);
+
+        // RegionChangeEvent event = new RegionChangeEvent(getId(), bounds, true, isGesture);
+        // eventDispatcher.dispatchEvent(event);
       }
     });
 
@@ -397,8 +411,22 @@ public class MapView extends com.google.android.gms.maps.MapView implements Goog
           cameraLastIdleBounds = bounds;
           boolean isGesture = GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE == cameraMoveReason;
 
-          RegionChangeEvent event = new RegionChangeEvent(getId(), bounds, false, isGesture);
-          eventDispatcher.dispatchEvent(event);
+          WritableMap event = new WritableNativeMap();
+          event.putBoolean("continuous", continuous);
+
+          WritableMap region = new WritableNativeMap();
+          LatLng center = bounds.getCenter();
+          region.putDouble("latitude", center.latitude);
+          region.putDouble("longitude", center.longitude);
+          region.putDouble("latitudeDelta", bounds.northeast.latitude - bounds.southwest.latitude);
+          region.putDouble("longitudeDelta", bounds.northeast.longitude - bounds.southwest.longitude);
+          event.putMap("region", region);
+          event.putBoolean("isGesture", isGesture);
+
+          manager.pushEvent(context, view, "topRegionChange", event);
+
+          // RegionChangeEvent event = new RegionChangeEvent(getId(), bounds, false, isGesture);
+          // eventDispatcher.dispatchEvent(event);
         }
       }
     });

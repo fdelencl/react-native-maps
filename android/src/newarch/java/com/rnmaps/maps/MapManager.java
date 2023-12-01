@@ -403,6 +403,9 @@ public class MapManager extends ViewGroupManager<MapView> {
                 "topOnUserLocationChange",
                 MapBuilder.of("registrationName", "onUserLocationChange"))
             .put(
+                "topOnRegionChange",
+                MapBuilder.of("registrationName", "onRegionChange"))
+            .put(
                 "topOnMarkerDragStart",
                 MapBuilder.of("registrationName", "onMarkerDragStart"))
             .put(
@@ -540,6 +543,10 @@ public class MapManager extends ViewGroupManager<MapView> {
       case "topUserLocationChange":
         Log.d("SHIT", "topUserLocationChange " + data);
         eventDispatcher.dispatchEvent(new UserLocationChangeEvent(UIManagerHelper.getSurfaceId(context), viewId, data));
+        break;
+      case "topRegionChange":
+        Log.d("SHIT", "topRegionChange " + data);
+        eventDispatcher.dispatchEvent(new RegionChangeEvent(UIManagerHelper.getSurfaceId(context), viewId, data));
         break;
       case "topMarkerDragStart":
         eventDispatcher.dispatchEvent(new MarkerDragStartEvent(UIManagerHelper.getSurfaceId(context), viewId, "test"));
